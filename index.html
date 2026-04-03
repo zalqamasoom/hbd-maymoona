@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Surprise! ✨</title>
+    <style>
+        body { background: #fff0f5; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding-top: 50px; color: #333; }
+        .box { background: white; width: 85%; max-width: 450px; margin: auto; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 2px solid #ffb6c1; }
+        h2 { color: #d02090; font-size: 22px; margin-bottom: 20px; }
+        input { padding: 12px; width: 80%; margin: 15px 0; border: 2px solid #ffc0cb; border-radius: 10px; outline: none; font-size: 16px; }
+        button { background: #ff69b4; color: white; border: none; padding: 12px 30px; border-radius: 10px; cursor: pointer; font-size: 18px; transition: 0.3s; font-weight: bold; }
+        button:hover { background: #ff1493; transform: scale(1.05); }
+        #gift { display: none; animation: fadeIn 2s; }
+        .emoji-float { font-size: 40px; margin: 10px; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+<div class="box" id="quiz-box">
+    <div class="emoji-float">🤔</div>
+    <h2 id="question">1. Where did we first meet?</h2>
+    <input type="text" id="answer" placeholder="Type your answer here...">
+    <br>
+    <button onclick="checkAnswer()">Next ✨</button>
+</div>
+
+<div id="gift" class="box">
+    <div class="emoji-float">🎂🎈🎁</div>
+    <h1 style="color: #ff1493;">HAPPY BIRTHDAY MY JAN! ❤️</h1>
+    <p style="font-size: 18px;">You are my favorite human and I'm so lucky to have you!</p>
+    <div class="emoji-float">💖🥺🌸</div>
+    <p><b>Your Special Gift:</b> You get an infinite amount of my love and a huge treat! 🍟🍦</p>
+</div>
+
+<script>
+    let step = 1;
+
+    function checkAnswer() {
+        let ans = document.getElementById("answer").value.toLowerCase();
+        
+        // --- Question 1 ---
+        if(step == 1 && (ans.includes("ac block") || ans.includes("stairs") || ans.includes("seedhiyan"))) {
+            step = 2;
+            document.getElementById("question").innerHTML = "2. What is that one thing about you that scares me the most? 😰";
+            document.getElementById("answer").value = "";
+            document.querySelector(".emoji-float").innerHTML = "👀";
+        } 
+        // --- Question 2 ---
+        else if(step == 2 && (ans.includes("gussa") || ans.includes("anger") || ans.includes("gussay"))) {
+            step = 3;
+            document.getElementById("question").innerHTML = "3. Will you ever leave me? 🥺👉👈";
+            document.getElementById("answer").value = "";
+            document.querySelector(".emoji-float").innerHTML = "🤝";
+        } 
+        // --- Question 3 ---
+        else if(step == 3 && (ans.includes("nahi") || ans.includes("no") || ans.includes("never"))) {
+            document.getElementById("quiz-box").style.display = "none";
+            document.getElementById("gift").style.display = "block";
+            startConfetti();
+        } 
+        else {
+            alert("Wrong answer! ❌ Yaad karo thora... focus! 😉");
+        }
+    }
+
+    // Enter key support
+    document.getElementById("answer").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    });
+</script>
+
+</body>
+</html>
